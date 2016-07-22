@@ -10,4 +10,9 @@ describe(Store) do
       expect(test_store.brands()).to(eq([test_brand, test_brand2]))
     end
   end
+
+  it('ensures that the value entered for Brand is not an empty string') do
+    test_store = Store.new({:name => ''})
+    expect(test_store.save()).to(eq(false))
+  end
 end
