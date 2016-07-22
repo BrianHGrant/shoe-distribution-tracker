@@ -20,4 +20,9 @@ describe(Brand) do
     test_brand = Brand.create({:name => 'cupertino clogs'})
     expect(test_brand.name).to(eq("Cupertino Clogs"))
   end
+
+  it('follows title case rules for capitalizing words') do
+    test_brand = Brand.create({:name => 'best in the world shoes'})
+    expect(test_brand.name).to(eq("Best in the World Shoes"))
+  end
 end
