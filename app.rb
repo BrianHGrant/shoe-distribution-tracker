@@ -12,3 +12,9 @@ get('/stores') do
   @stores = Store.all()
   erb(:stores)
 end
+
+post('/stores') do
+  store_name = params.fetch('store_name')
+  Store.create({:name => store_name})
+  redirect('/stores')
+end

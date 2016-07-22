@@ -14,4 +14,11 @@
   <% else %>
     <h3>There are no stores in the database. Add a store now.</h3>
   <% end %>
+  <hr>
+  <h3>Add Store</h3>
+  <form action="/stores" method="post">
+    <label for="store_name">Store Name:</label>
+    <input type="text" name="store_name">
+    <button type="submit" class="btn btn-success">Add Store</button>
+  </form>
   <a href ="/">Home</a>
