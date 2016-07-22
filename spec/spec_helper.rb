@@ -11,3 +11,11 @@ require('./app')
 require('pry')
 
 Dir[File.dirname(__FILE__) + '/../lib/*.rb'].each { |file| require file }
+
+RSpec.configure do |config|
+  config.after(:each) do
+    Store.all().each do |store|
+      store.destroy()
+    end
+  end
+end
