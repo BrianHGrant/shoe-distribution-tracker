@@ -2,7 +2,7 @@ require ('spec_helper')
 
 describe(Store) do
   describe('#brands') do
-    it('will return the stores that sell a specified brand') do
+    it('will return the brands sold by a specific store') do
       test_store = Store.create({:name => 'Good for your sole Shoes'})
       test_brand = Brand.create({:name => 'Kennebunkport Kicks'})
       test_brand2 = Brand.create({:name => 'Siddartha Sandels'})
@@ -11,7 +11,7 @@ describe(Store) do
     end
   end
 
-  it('ensures that the value entered for Brand is not an empty string') do
+  it('ensures that the value entered for Store is not an empty string') do
     test_store = Store.new({:name => ''})
     expect(test_store.save()).to(eq(false))
   end

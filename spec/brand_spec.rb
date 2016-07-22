@@ -15,4 +15,9 @@ describe(Brand) do
     test_brand = Brand.new({:name => ''})
     expect(test_brand.save()).to(eq(false))
   end
+
+  it('ensures that the value entered for a brand is capitalized') do
+    test_brand = Brand.create({:name => 'cupertino clogs'})
+    expect(test_brand.name).to(eq("Cupertino Clogs"))
+  end
 end
