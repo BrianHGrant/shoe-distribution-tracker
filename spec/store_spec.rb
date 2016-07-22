@@ -15,4 +15,14 @@ describe(Store) do
     test_store = Store.new({:name => ''})
     expect(test_store.save()).to(eq(false))
   end
+
+  it('ensures that the value entered for a store is capitalized') do
+    test_store = Store.create({:name => 'portland peds'})
+    expect(test_store.name).to(eq("Portland Peds"))
+  end
+
+  it('follows title case rules for capitalizing words') do
+    test_store = Store.create({:name => 'best in the world shoes'})
+    expect(test_store.name).to(eq("Best in the World Shoes"))
+  end
 end
