@@ -1,0 +1,39 @@
+<h2>Store: <%= @store.name %></h2>
+<hr>
+<h3>Brands at this store</h3>
+<%if @store.brands.any?() %>
+  <table>
+    <th>Brand ID</th>
+    <th>Brand Name</th>
+    <% @store.brands.each do |brand| %>
+      <tr>
+        <td><%= brand.id %></td>
+        <td><a href="/brands/<%= brand.id %>"><%= brand.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h3> No brands entered for this store currently</h3>
+<% end %>
+<hr>
+<h3>Update Store</h3>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-5">
+    <form action="/stores/<%= @store.id() %>/edit" method="post">
+    <input name="_method" type="hidden" value="patch">
+    <label for="new_store_name">Name:</label><br>
+    <input name="new_store_name" type="text"><br>
+    <button type="submit" class="btn btn-primary">Update Store</button>
+  </form>
+  <br>
+  <hr>
+  <hr>
+  <form action="/stores/<%= @store.id %>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <button type="submit" class="btn btn-danger">Delete Store</button>
+  </form>
+  </div>
+  <div class="col-sm-offset-1 col-sm-5">
+
+  </div>
+</div>
