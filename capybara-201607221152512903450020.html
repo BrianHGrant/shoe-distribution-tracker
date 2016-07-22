@@ -1,26 +1,24 @@
-<h2>Store: <%= @store.name %></h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Find a Shoe</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8">  </head>
+  <body>
+    <h1>Find a Shoe Tracker</h1>
+    <h3>Track your favorite brands and where to find them</h3>
+
+    <h2>Store: Portland Ped</h2>
 <hr>
 <h3>Brands at this store</h3>
-<%if @store.brands.any?() %>
-  <table>
-    <th>Brand ID</th>
-    <th>Brand Name</th>
-    <% @store.brands.each do |brand| %>
-      <tr>
-        <td><%= brand.id %></td>
-        <td><a href="/brands/<%= brand.id %>"><%= brand.name %></a></td>
-      </tr>
-    <% end %>
-  </table>
-<% else %>
   <h3> No brands entered for this store currently</h3>
-<% end %>
 <hr>
 <h3>Update Store</h3>
 <div class="row">
   <div class="col-sm-offset-1 col-sm-5">
     <h4>Store Info</h4>
-    <form action="/stores/<%= @store.id() %>/edit" method="post">
+    <form action="/stores/221/edit" method="post">
       <input name="_method" type="hidden" value="patch">
       <label for="new_store_name">Name:</label><br>
       <input name="new_store_name" type="text"><br>
@@ -29,7 +27,7 @@
     <br>
     <hr>
     <hr>
-    <form action="/stores/<%= @store.id %>" method="post">
+    <form action="/stores/221" method="post">
       <input type="hidden" name="_method" value="delete">
       <button type="submit" class="btn btn-danger">Delete Store</button>
     </form>
@@ -38,24 +36,25 @@
     <h4>Add or Remove Brand</h4>
     <hr>
     <h5>Add Existing Brand:</h5>
-    <form action="/stores/<%= @store.id %>/add_brand" method="post">
+    <form action="/stores/221/add_brand" method="post">
       <select name="brand_select">
-        <% @brands.each() do |brand| %>
-          <option value = "<%= brand.id() %>"><%= brand.name() %></option>
-        <% end %>
+        
       </select>
       <button type="submit" class="btn btn-success">Add Brand</button>
     </form>
     <hr>
     <h5>Remove Brand from Store:</h5>
-    <form action="/stores/<%= @store.id %>/remove_brand" method="post">
+    <form action="/stores/221/remove_brand" method="post">
       <input type="hidden" name="_method" value="delete">
       <select name="brand_remove">
-        <% @store.brands().each() do |brand| %>
-        <option value="<%= brand.id() %>"><%= brand.name()%> </option>
-        <% end %>
+        
       </select>
       <button type="submit" class="btn btn-danger">Remove Brand</button>
     </form>
   </div>
 </div>
+
+
+
+  </body>
+</html>

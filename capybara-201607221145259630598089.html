@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Find a Shoe</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="/css/styles.css" media="screen" title="no title" charset="utf-8">  </head>
+  <body>
+    <h1>Find a Shoe Tracker</h1>
+    <h3>Track your favorite brands and where to find them</h3>
+
+    <h2>Current Stores</h2>
+
+<div clas="container-fluid">
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-3">
+      
+        <h3>There are no stores in the database. Add a store now.</h3>
+      
+    </div>
+  </div>
+  <hr>
+  <h3>Add Store</h3>
+  <form action="/stores" method="post">
+    <label for="store_name">Store Name:</label>
+    <input type="text" name="store_name">
+    <button type="submit" class="btn btn-success">Add Store</button>
+  </form>
+  <hr>
+  <a href ="/">Home</a>
+</div>
+
+
+
+  </body>
+</html>
