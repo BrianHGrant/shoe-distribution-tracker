@@ -57,8 +57,41 @@ get('/brands') do
   erb(:brands)
 end
 
+get('/brands/:id') do
+  @brand = Brand.find(params.fetch("id").to_i)
+  @stores = Store.all()
+  erb(:brand)
+end
+
+delete('/brands/:id') do
+  brand = Brand.find(params.fetch('id').to_i)
+  brand.delete()
+  redirect('/brands')
+end
+
+patch('/brands/:id/edit') do
+  name = params.fetch('new_brand_name')
+  brand = Brand.find(params.fetch('id').to_i)
+  brand.update({:name => name})
+  redirect('/brands/'.concat(brand.id.to_s))
+end
+
+delete('/brands/:id/remove_store') do
+  brand = Brand.find(params.fetch("id").to_i)
+  store_id = params.fetch("store_remove").to_i
+  brand.stores.destroy(Store.find(store_id))
+  redirect('/brands/'.concat(brand.id.to_s))
+end
+
 post('/brands') do
   brand_name = params.fetch('brand_name')
   Brand.create({:name => brand_name})
   redirect('/brands')
+end
+
+post('/brands/:id/add_store') do
+  brand = Brand.find(params.fetch("id").to_i)
+  store_id = params.fetch("store_select").to_i
+  brand.stores.push(Store.find(store_id))
+  redirect('/brands/'.concat(brand.id.to_s))
 end

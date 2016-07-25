@@ -1,0 +1,64 @@
+<h2>Brand: <%= @brand.name %></h2>
+<hr>
+<h3>Stores that carry this brand</h3>
+<%if @brand.stores.any?() %>
+  <table>
+    <th>Store ID</th>
+    <th>Store Name</th>
+    <% @brand.stores.each do |store| %>
+      <tr>
+        <td><%= store.id %></td>
+        <td><a href="/stores/<%= store.id %>"><%= store.name %></a></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <h3> No stores carry this brand currently</h3>
+<% end %>
+<hr>
+<h3>Update Brand</h3>
+<div class="row">
+  <div class="col-sm-offset-1 col-sm-5">
+    <h4>Brand Info</h4>
+    <form action="/brands/<%= @brand.id() %>/edit" method="post">
+      <input name="_method" type="hidden" value="patch">
+      <label for="new_brand_name">Name:</label><br>
+      <input name="new_brand_name" type="text"><br>
+      <button type="submit" class="btn btn-primary">Update Brand</button>
+    </form>
+    <br>
+    <hr>
+    <hr>
+    <form action="/brands/<%= @brand.id %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <button type="submit" class="btn btn-danger">Delete Brand</button>
+    </form>
+  </div>
+  <div class="col-sm-offset-1 col-sm-5">
+    <h4>Add or Remove Store</h4>
+    <hr>
+    <h5>Add Existing Store:</h5>
+    <form action="/brands/<%= @brand.id %>/add_store" method="post">
+      <select name="store_select">
+        <% @stores.each() do |store| %>
+          <option value = "<%= store.id() %>"><%= store.name() %></option>
+        <% end %>
+      </select>
+      <button type="submit" class="btn btn-success">Add Store</button>
+    </form>
+    <hr>
+    <h5>Remove Store from Brand:</h5>
+    <form action="/brands/<%= @brand.id %>/remove_store" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <select name="store_remove">
+        <% @brand.stores().each() do |store| %>
+        <option value="<%= store.id() %>"><%= store.name()%> </option>
+        <% end %>
+      </select>
+      <button type="submit" class="btn btn-danger">Remove Store</button>
+    </form>
+  </div>
+</div>
+<hr>
+  <a href ="/brands">Brands</a>
+  <a href ="/">Home</a>
